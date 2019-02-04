@@ -8,10 +8,6 @@ AT_presence works with ActionTiles to display proper presence status tiles for p
 
 ![Alt text](example/screenshot.JPG?raw=true "Title")
 
-Potential future enhancements:
-
-1. Abililty to show the date/time when the person left or arrived at the location they were last at.
-2. Miles from home indicator.
 
 ## Getting Started
 
