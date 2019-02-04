@@ -92,7 +92,7 @@ Open your webCoRE dashboard in a web browser and create a new piston.
 
 Click “Restore a piston from a backup code” and give it a name like “Update Presence - <name of person>” example: Update Presence - Dad.
 
-Enter 6jcs for the backup bin code and click Create.
+Enter **6jcs** for the backup bin code and click Create.
 
 This will create a new piston template.
 
