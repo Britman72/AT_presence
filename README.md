@@ -106,7 +106,7 @@ http://www.yourserver.com/AT_presence/updatepresence.php
 
 ### Step 3
 
-Change the string “name” to the name of the person you are updating. Note, you will need to create a piston and repeat this process for EACH person you are capturing presence for.
+Change the string “name” to the name of the person you are updating. Only enter one name here.
 
 ```
    define 
@@ -115,19 +115,19 @@ Change the string “name” to the name of the person you are updating. Note, y
 
 ### Step 4
 
-Update the presence device and location.
+Next you will need to update the presence device and place/location.
 
-Click on each line where you see {:xxxxxxxxxxxxxxxxxxxxxxxxxxxx0:} and select the device from the list. For example, choose 'Dad'.
+Click on each line where you see {:xxxxxxxxxxxxxxxxxxxxxxxxxxxx0:} and select your presence device from the list. For example, choose 'Dad'.
 
-Change Home, Work, Gym etc. do all the places/locations that you’ve already defined in webCoRE. Comma separate each one.
+Change Home, Work, Gym etc. to all the places/locations that you’ve already defined in webCoRE. Comma separate each one.
 
 Repeat this process throughout the piston code.
 
-Note that by default the piston will also send a push notification when the person’s presence changes. You can remove this if need be.
+Note that by default the piston will also send a push notification when the person’s presence changes. You can remove this if need be but it's good for initial testing.
 
 ### Step 5
 
-Repeat the process of creating a new piston for each and every person.
+Repeat the process of creating a new piston for each and every person. The end result you will have one piston per person.
 
 ### Step 6
 
