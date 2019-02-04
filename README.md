@@ -1,6 +1,6 @@
 # AT Presence
 
-AT_presence works with ActionTiles to display proper presence status tiles for presence captured via WebCORE and SmartThings. Currently the only presence shown in ActionTiles is “Present” and “Not Present”, which is worth noting more of a limitation of SmartThings. This method will give you the following benefits:
+AT_presence works with ActionTiles to display proper presence status tiles for presence captured via webCoRE and SmartThings. Currently the only presence shown in ActionTiles is “Present” and “Not Present”, which is worth noting more of a limitation of SmartThings. This method will give you the following benefits:
 
 1. Display any location such as Home, Work, School, Mall, Gym etc. The number of locations is endless.
 2. Show a customized image instead of a presence icon.
@@ -10,17 +10,17 @@ AT_presence works with ActionTiles to display proper presence status tiles for p
 
 ## Getting Started
 
-These instructions will cover the steps needed to get your WebCORE presence into ActionTiles.
+These instructions will cover the steps needed to get your webCoRE presence into ActionTiles.
 
 ### Prerequisites
 
-You will need to ensure you have already configured at least ONE presence device in WebCORE and SmartThings and have created at least ONE place/location in the WebCORE app on your phone, and that it is correctly updating presence for that device.
+You will need to ensure you have already configured at least ONE presence device in webCoRE and SmartThings and have created at least ONE place/location in the webCoRE app on your phone, and that it is correctly updating presence for that device.
 
 Furthermore, you will need the following:
 
 1. ActionTiles
 2. SmartThings
-3. WebCore
+3. webCoRE
 4. Webserver with PHP and GD.
 5. MySQL database.
 
@@ -82,13 +82,13 @@ Give each image the same name as the person eg. dad.jpg, mom.jpg, tim.jpg etc.
 
 Upload each file to the AT_presence\userprofiles folder on your web server.
 
-## WebCORE Piston Instructions
+## webCoRE Piston Instructions
 
-Before completing the below you will need to ensure you have already setup WebCORE and connected it to SmartThings so that your presence devices are already setup and working. You will also need to ensure you have configured places/locations within the WebCORE app on your phone.
+Before completing the below you will need to ensure you have already setup webCoRE and connected it to SmartThings so that your presence devices are already setup and working. You will also need to ensure you have configured places/locations within the WebCORE app on your phone.
 
 ### Step 1 
 
-Open your WebCORE dashboard in a web browser and create a new piston.
+Open your webCoRE dashboard in a web browser and create a new piston.
 
 Click “Restore a piston from a backup code” and give it a name like “Update Presence - <name of person>” example: Update Presence - Dad.
 
@@ -119,7 +119,7 @@ Update the presence device and location.
 
 Click on each line where you see {:xxxxxxxxxxxxxxxxxxxxxxxxxxxx0:} and select the device from the list. For example, choose 'Dad'.
 
-Change Home, Work, Gym etc. do all the places/locations that you’ve already defined in WebCORE. Comma separate each one.
+Change Home, Work, Gym etc. do all the places/locations that you’ve already defined in webCoRE. Comma separate each one.
 
 Repeat this process throughout the piston code.
 
