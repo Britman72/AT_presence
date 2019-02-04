@@ -22,15 +22,12 @@ Furthermore, you will need the following:
 4. Webserver with PHP and GD.
 5. MySQL database.
 
-### Installing
-
 ## Web Server Installation Instructions
-
-Download this project.
 
 ### Step 1.
 
-Upload the AT_presence folder to your webserver. Typically you will put the folder in your public_html folder.
+Create the folder "AT_presence" on your webserver. Typically you will create the folder under your public_html folder.
+Upload this project's contents to the folder.
 
 ### Step 2.
 
