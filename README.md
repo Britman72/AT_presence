@@ -6,6 +6,8 @@ AT_presence works with ActionTiles to display proper presence status tiles for p
 2. Show a customized image instead of a presence icon.
 3. Customize the tile size and background to match your existing tiles.
 
+![Alt text](example/screenshot.JPG?raw=true "Title")
+
 ## Getting Started
 
 These instructions will cover the steps needed to get your WebCORE presence into ActionTiles.
