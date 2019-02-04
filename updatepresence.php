@@ -3,7 +3,6 @@
 // Get the params first
 
 $params = array_change_key_case($_GET);
-$id = $params['id'];
 $name = $params['name'];
 $status = $params['status'];
 
