@@ -3,7 +3,7 @@
 AT_presence works with ActionTiles to display proper presence status tiles for presence captured via webCoRE and SmartThings. Currently the only presence shown in ActionTiles is “Present” and “Not Present”, which is worth noting more of a limitation of SmartThings. This method will give you the following benefits:
 
 1. Display any location such as Home, Work, School, Mall, Gym etc. The number of locations is endless.
-2. Show a customized image instead of a presence icon.
+2. Shows a customized image instead of an icon.
 3. Customize the tile size and background to match your existing tiles.
 
 ![Alt text](example/screenshot.JPG?raw=true "Title")
@@ -178,4 +178,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * Ruquay K Calloway
-* ActionTiles
+* ActionTiles  
