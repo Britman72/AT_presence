@@ -206,7 +206,7 @@ $height = round( $height, 3 );
 $text_angle = 0;
 
  // If you want to use a different font simply upload the true type font (.ttf) file to the same directory as this PHP file and set the $font variable to the font file name. I'm using the M+ font which is free for distribution -> http://www.fontsquirrel.com/fonts/M-1c
-$font = 'fonts/arial.ttf';
+$font = dirname(__FILE__) . '/fonts/arial.ttf';
 
 // Create an image
 $img = imageCreateTrueColor( $width, $height );
