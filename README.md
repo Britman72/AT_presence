@@ -12,7 +12,7 @@ Presence is displayed as such:
 
 At Home       - Presence is at home. Image will have a green circle.<br>
 Away          - Presence is away from home and not at a predefined place/location. Image will have a red circle.<br>
-At "location" - Presence is at a predefined/location. Image will have a red circle.<br>
+At "location" - Presence is at a predefined place/location. Image will have a red circle.<br>
   
 ## Getting Started
 
