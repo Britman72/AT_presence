@@ -171,6 +171,10 @@ http://www.yourwebserver.com/AT_presence/200x200/333/fff&name=Dad
 
 Set the refresh rate to something meaningful such as 60 seconds or more.
 
+If the URL works your image will be displayed like so:
+
+![Alt text](example/screenshot2.JPG?raw=true "Title")
+
 ### Step 2
 
 Repeat adding more media tiles for each person.
