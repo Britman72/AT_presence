@@ -1,6 +1,6 @@
 # AT Presence
 
-AT_presence works with ActionTiles to display proper presence status tiles for presence captured via webCoRE and SmartThings. Currently the only presence shown in ActionTiles is “Present” and “Not Present”, which is worth noting more of a limitation of SmartThings. This method will give you the following benefits:
+AT_presence works with ActionTiles to display proper presence status tiles for presence captured via webCoRE and SmartThings. Currently the only presence shown in ActionTiles is “Present” and “Not Present”, which is worth noting more of a limitation of SmartThings. This project will give you the following benefits:
 
 1. Display any location such as Home, Work, School, Mall, Gym etc. The number of locations is endless.
 2. Shows a customized image instead of an icon.
@@ -35,7 +35,7 @@ Furthermore, you will need the following:
 ### Step 1.
 
 Create the folder "AT_presence" on your webserver. Typically you will create the folder under your public_html folder.
-Upload this project's contents to the folder.
+Upload this project's contents to the folder, with the exception of the example folder.
 
 ### Step 2.
 
