@@ -95,7 +95,7 @@ Click “Restore a piston from a backup code” and give it a name like “Updat
 
 Enter **6jcs** for the backup bin code and click Create.
 
-This will create a new piston template.
+This will create a new piston from the template.
 
 ### Step 2
 
@@ -125,6 +125,8 @@ Change Home, Work, Gym etc. to all the places/locations that you’ve already de
 Repeat this process throughout the piston code.
 
 Note that by default the piston will also send a push notification when the person’s presence changes. You can remove this if need be but it's good for initial testing.
+
+Another note, the piston includes a rapidfire condition which prevents the presence from triggering multuple times within a 5 minute period. If you are experiencing the presence triggering too often try playing with the value until you no longer get multiple updates. I found 5 minutes to be the sweet spot.
 
 ### Step 5
 
