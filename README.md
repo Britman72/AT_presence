@@ -8,7 +8,12 @@ AT_presence works with ActionTiles to display proper presence status tiles for p
 
 ![Alt text](example/screenshot.JPG?raw=true "Title")
 
+Presence is displayed as such:
 
+At Home       - Presence is at home. Image will have a green circle.<br>
+Away          - Presence is away from home and not at a predefined place/location. Image will have a red circle.<br>
+At "location" - Presence is at a predefined/location. Image will have a red circle.<br>
+  
 ## Getting Started
 
 These instructions will cover the steps needed to get your webCoRE presence into ActionTiles.
