@@ -50,8 +50,9 @@ Open the SQL editor and run:
 ```
 CREATE TABLE `presence` (
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `status` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `timestamp` datetime NOT NULL
+  `place` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `timestamp` datetime NOT NULL,
+  `last place` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 ALTER TABLE `presence`
@@ -98,7 +99,7 @@ Open your webCoRE dashboard in a web browser and create a new piston.
 
 Click “Restore a piston from a backup code” and give it a name like “Update Presence - <name of person>” example: Update Presence - Dad.
 
-Enter **asgae** for the backup bin code and click Create.
+Enter **h6fo** for the backup bin code and click Create.
 
 This will create a new piston from the template.
 
@@ -155,19 +156,22 @@ Add a new media tile and choose “This Media is a still image or GIF”
 For the URL paste in:
 
 ```
-http://www.yourwebserver.com/AT_presence/<tile size>/<tile color>/<text color>&name=<name>
+http://www.yourwebserver.com/AT_presence/<tile size>/<tile color>/<text color>&name=[name]&detail=[1|0]&bgalpha=[0|127]
 
 tile size = 	the size of your tile eg. 200x200
 tile color = 	the background HEX color of your tile (# not required) eg. 333333
 text color =	the text HEX color (# not required) etg. Ffffff
 name = 	      the name of the person eg. Dad.
+detail =      1=Show "Arrived/Left HH:MMAMPM" below the place. 0=Do not show this line.
+bgalpha =     0-127 with 0 being opaque and 127 being 100% transparent.
 ```
 
 Example:
 
 ```
-http://www.yourwebserver.com/AT_presence/200x200/333/fff&name=Dad
+http://www.yourwebserver.com/AT_presence/200x200/333/fff&name=Dad&detail=1&bgalpha=0
 ```
+This will display a tile 200x200 pixels in size with a background color of #333 and text color of #fff, with a detail like below the place (ie Arrived/Left Home) with a solid background transparency.
 
 Set the refresh rate to something meaningful such as 60 seconds or more.
 
