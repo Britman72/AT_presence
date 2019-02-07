@@ -37,6 +37,12 @@ header("Pragma: no-cache");
 
 $params = array_change_key_case($_GET);
 $name = $params['name'];
+$detail = $params['detail']; //1=show detail row 0=no detail row
+$bgalpha = $params['bgalpha']; //A value between 0 and 127. 0 indicates completely opaque while 127 indicates completely transparent.
+
+if ($bgalpha == '') {
+    $bgalpha=0;
+}
 
 if(isset($name)) {
     $name = $name;
@@ -46,9 +52,9 @@ if(isset($name)) {
 
 // Get the values from the presence table
 $servername = "localhost";
-$username = "<your username>";
-$password = "<your password>";
-$dbname = "<your AT_presence database>";
+$username = "wynnehyb_admin";
+$password = "admin";
+$dbname = "wynnehyb_AT_presence";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -65,11 +71,13 @@ if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
         $sname = $row["name"];
-        $sstatus = $row["status"];
+        $splace = $row["place"];
+        $slastplace = $row["last place"];  
+        $dtime = new DateTime($row["timestamp"]);
     }
 } else {
     $conn->close();
-    exit("Sorry you have no status stored!");
+    exit("Sorry you have no place stored!");
 }
 
 $conn->close();
@@ -205,14 +213,15 @@ $height = round( $height, 3 );
 //I don't use this but if you wanted to angle your text you would change it here.
 $text_angle = 0;
 
- // If you want to use a different font simply upload the true type font (.ttf) file to the same directory as this PHP file and set the $font variable to the font file name. I'm using the M+ font which is free for distribution -> http://www.fontsquirrel.com/fonts/M-1c
+ // If you want to use a different font simply upload the true type font (.ttf) file to the same directory as this PHP file and set the $font variable to the font file name.
 $font = dirname(__FILE__) . '/fonts/arial.ttf';
 
 // Create an image
 $img = imageCreateTrueColor( $width, $height );
 
-$bg_color = imagecolorallocate( $img, $background->get_rgb('r'), $background->get_rgb('g'), $background->get_rgb('b') );
+$bg_color = imagecolorallocatealpha( $img, $background->get_rgb('r'), $background->get_rgb('g'), $background->get_rgb('b'), $bgalpha );
 $fg_color = imagecolorallocate( $img, $foreground->get_rgb('r'), $foreground->get_rgb('g'), $foreground->get_rgb('b') );
+$fg_color_det = imagecolorallocatealpha( $img, $foreground->get_rgb('r'), $foreground->get_rgb('g'), $foreground->get_rgb('b'), 70 ); //detail row has slightly lower alpha
 
 $icon = "userprofiles/" . strtolower($name) . ".jpg";
 
@@ -235,7 +244,7 @@ $transparent = imagecolorallocate($mask, $background->get_rgb('r'), $background-
 imagecolortransparent($mask, $transparent);
 
 // Add the border first. Red=Away. Green=Home.
-if($sstatus == "At Home") {
+if($splace == "At Home") {
     $color = imagecolorallocate($img, 87, 199, 38);
 } else {
     $color = imagecolorallocate($img, 255, 0, 0);
@@ -244,7 +253,7 @@ imagefilledellipse($mask, $newwidth/2, $newheight/2, $newwidth-2, $newheight-2, 
 
 // Add the actual image
 imagefilledellipse($mask, $newwidth/2, $newheight/2, $newwidth-16, $newheight-16, $transparent);
-$red = imagecolorallocate($mask, $background->get_rgb('r'), $background->get_rgb('g'), $background->get_rgb('b'));
+$red = imagecolorallocatealpha($mask, $background->get_rgb('r'), $background->get_rgb('g'), $background->get_rgb('b'), $bgalpha);
 imagecopymerge($image, $mask, 0, 0, 0, 0, $newwidth, $newheight, 100);
 imagecolortransparent($image, $red);
 imagefill($image, 0, 0, $red);
@@ -261,75 +270,64 @@ imagefill($img, 0, 0, $bg_color);
 imagecopyresampled($img, $src, $imgX, $imgY, 0, 0, $width*.45, $height*.45, 256, 256);
 imagesavealpha( $img, true );
 
-// AL
-// Make the text from the database values
-// We should have at least two values. The presecence name and the presence place.
-// Name goes at the top. Place at the bottom.
-// Overlay the location icon on the image.
+// Make the text from the database values.
+// We should have at least two values. The person/presence name ie 'Dad' and the presence place ie 'Home'.
+// If the detail param is set to 1 then we display a detail row under the presence place to note leave/arrival place time.
+// Name goes at the top. Place at the bottom. Detail under Place.
 
-$lines=2;
-
-/*
-if ( empty( $_GET['text'] ) || ! isset( $_GET['text'] ) ) {
-	preg_match( '/&text=(.+)/i', $_GET['x'], $matches );
-	if ( isset( $matches[1] ) ) {
-		$_GET['text'] = urldecode( $matches[1] );
-	}
-}
-
-if ( isset( $_GET['text'] ) && $_GET['text'] ) {
-	$_GET['text'] = preg_replace_callback(
-		"/(0x[0-9A-F]{,3})/ui",
-		function( $matches ) {
-			return chr( hexdec( $matches[0] ) );
-		},
-		$_GET['text']
-	);
-	$lines = substr_count( $_GET['text'], '|' );
-	$text = preg_replace( '/\|/i', "\n", $_GET['text'] );
+if ($detail == 0) {
+   $lines=2;
+   $detailrow = '';
 } else {
-	$lines = 1;
-	// This is the default text string that will go right in the middle of the rectangle
-	// &#215; is the multiplication sign, it is not an 'x'
-	$text = $width." &#215; ".$height;
+   $lines=3;    
+
+   // Let's set the detailrow variable if we want to show the detail row.
+  
+   if ($splace == 'Away') {
+       $detailrow = 'Left ' . $slastplace . ' ' . $dtime->format('h:ia');
+   } else {
+       $detailrow = 'Arrived '. $dtime->format('h:ia');
+   }
 }
-*/
 
-// Ric Ewing: I modified this to behave better with long or narrow images and condensed the resize code to a single line
+
+// I modified this to behave better with long or narrow images and condensed the resize code to a single line
 $fontsize1 = round(($width*.9) / 10);
-$fontsize2 = round(($width*.9) / 10);
 
-//$fontsize1 = max( min( $width / (strlen($sname) *. , $height * 0.5 ), 5 );
-//$fontsize2 = max( min( $width / strlen($splace) , $height * 0.5 ), 5 );
+//If deail row is added then we need to drop the font size of the 2nd row (place) to accomodate it.
+
+if ($detail == 0)  {
+   $fontsize2 = round(($width*.9) / 10);
+   $fontsize3 = 0;
+} else {
+   $fontsize2 = round(($width*.9) / 12);    
+   $fontsize3 = round(($width*.9) / 15);
+}
 
 // Pass these variable to a function to calculate the position of the bounding box
 $textBox1 = imagettfbbox_t($fontsize1, $text_angle, $font, $sname);
-$textBox2 = imagettfbbox_t($fontsize2, $text_angle, $font, $sstatus);
+$textBox2 = imagettfbbox_t($fontsize2, $text_angle, $font, $splace);
+$textBox3 = imagettfbbox_t($fontsize3, $text_angle, $font, $detailrow);
 
 // Calculate the width of the text box by subtracting the upper right "X" position with the lower left "X" position
 $textWidth1 = ceil( ( $textBox1[4] - $textBox1[1] ) * 1.07 );
 $textWidth2 = ceil( ( $textBox2[4] - $textBox2[1] ) * 1.07 );
+$textWidth3 = ceil( ( $textBox3[4] - $textBox3[1] ) * 1.07 );
 
 // Calculate the height of the text box by adding the absolute value of the upper left "Y" position with the lower left "Y" position
 $textHeight1 = ceil( ( abs( $textBox1[7] ) + abs( $textBox1[1] ) ) * 1 );
 $textHeight2 = ceil( ( abs( $textBox2[7] ) + abs( $textBox2[1] ) ) * 1 );
+$textHeight3 = ceil( ( abs( $textBox3[7] ) + abs( $textBox3[1] ) ) * 1 );
 
 //Determine where to set the X position of the text box so it is centered
 $textX1 = ceil( ( $width - $textWidth1 ) / 2 );
 $textX2 = ceil( ( $width - $textWidth2 ) / 2 );
+$textX3 = ceil( ( $width - $textWidth3 ) / 2 );
 
-//Determine where to set the Y position of the text box so it is centered
-//$textY = ceil( ( $height - $textHeight ) / 2 + $textHeight );
-
-//Create the rectangle with the specified background color
-//imageFilledRectangle( $img, 0, 0, $width, $height, $bg_color );
-
-//Create and positions the text
+//Create and position the text
 imagettftext( $img, $fontsize1, $text_angle, $textX1, $fontsize1 + ($height/$fontsize1), $fg_color, $font, $sname );
-imagettftext( $img, $fontsize2, $text_angle, $textX2, $height-$fontsize2, $fg_color, $font, $sstatus );
-//imagettftext( $img, $fontsize1, $text_angle, $textX1, 0, $fg_color, $font, $sname );
-//imagettftext( $img, $fontsize2, $text_angle, $textX2, 70, $fg_color, $font, $splace );
-
+imagettftext( $img, $fontsize2, $text_angle, $textX2, $height-($fontsize2+$fontsize3+2), $fg_color, $font, $splace );
+imagettftext( $img, $fontsize3, $text_angle, $textX3, $height-$fontsize3+2, $fg_color_det, $font, $detailrow );
 
 function drawborder($source,$r,$x,$y,$color){
   for($i = 0;$i<=2*pi();$i+=(pi()/180)){
