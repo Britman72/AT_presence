@@ -221,7 +221,7 @@ $img = imageCreateTrueColor( $width, $height );
 
 $bg_color = imagecolorallocatealpha( $img, $background->get_rgb('r'), $background->get_rgb('g'), $background->get_rgb('b'), $bgalpha );
 $fg_color = imagecolorallocate( $img, $foreground->get_rgb('r'), $foreground->get_rgb('g'), $foreground->get_rgb('b') );
-$fg_color_det = imagecolorallocatealpha( $img, $foreground->get_rgb('r'), $foreground->get_rgb('g'), $foreground->get_rgb('b'), 70 ); //detail row has slightly lower alpha
+$fg_color_det = imagecolorallocatealpha( $img, $foreground->get_rgb('r'), $foreground->get_rgb('g'), $foreground->get_rgb('b'), 40 ); //detail row has slightly lower alpha
 
 $icon = "userprofiles/" . strtolower($name) . ".jpg";
 
