@@ -3,22 +3,24 @@
 // Get the params first
 
 $params = array_change_key_case($_GET);
+$id = $params['id'];
 $name = $params['name'];
-$status = $params['status'];
+$place = $params['place'];
+$lastplace = $params['lastplace'];
 
-if (empty($status)) {
-    $status = "Away";
+if (empty($place)) {
+    $place = "Away";
 }
 
-if ($status != "Away") {
-   $status = "At " . $status;
+if ($place != "Away") {
+   $place = "At " . $place;
 }
 
 //Connect to DB
 $servername = "localhost";
-$username = "<your username>";
-$password = "<your password>";
-$dbname = "<your AT_presence database>";
+$username = "wynnehyb_admin";
+$password = "admin";
+$dbname = "wynnehyb_AT_presence";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -29,7 +31,7 @@ if ($conn->connect_error) {
 } 
 
 // query
-$sql = "REPLACE INTO presence (`name`,`status`,`timestamp`) values ('" . $name . "','" . $status . "','" . date("Y-m-d H:i:s") . "')";
+$sql = "REPLACE INTO presence (`name`,`place`,`timestamp`,`last place`) values ('" . $name . "','" . $place . "','" . date("Y-m-d H:i:s") . "','" . $lastplace . "')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
