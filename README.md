@@ -1,6 +1,6 @@
 # AT Presence
 
-AT_presence works with ActionTiles to display proper presence status tiles for presence captured via webCoRE and SmartThings. Currently the only presence shown in ActionTiles is “Present” and “Not Present”, which is worth noting more of a limitation of SmartThings. This project will give you the following benefits:
+AT_presence works with ActionTiles, DakBoard or other front end smarthome panel to display proper presence status tiles for presence captured via webCoRE and SmartThings. Currently the only presence shown in SmartThings is “Present” and “Not Present”. This project will give you the following benefits:
 
 1. Display any location such as Home, Work, School, Mall, Gym etc. The number of locations is endless.
 2. Shows a customized image instead of an icon.
@@ -182,6 +182,10 @@ If the URL works your image will be displayed like so:
 ### Step 2
 
 Repeat adding more media tiles for each person.
+
+## DakBoard Instructions
+
+You will need a premium or higher license for DakBoard in order to be able to use a custom layout. With your custom layout, add an image URL and use the same URL as above for ActionTiles. Use the bgalpha parameter to control the transparency.
 
 ## Authors
 
