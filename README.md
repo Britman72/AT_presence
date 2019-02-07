@@ -24,9 +24,9 @@ You will need to ensure you have already configured at least ONE presence device
 
 Furthermore, you will need the following:
 
-1. ActionTiles
-2. SmartThings
-3. webCoRE
+1. ActionTiles, DakBoard or other front-end display.
+2. SmartThings Classic App.
+3. webCoRE.
 4. Webserver with PHP and GD.
 5. MySQL database.
 
