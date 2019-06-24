@@ -52,9 +52,9 @@ if(isset($name)) {
 
 // Get the values from the presence table
 $servername = "localhost";
-$username = "wynnehyb_admin";
-$password = "admin";
-$dbname = "wynnehyb_AT_presence";
+$username = "";
+$password = "";
+$dbname = "";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
